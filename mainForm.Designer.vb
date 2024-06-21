@@ -31,34 +31,38 @@ Partial Class Form1
         '
         Me.btnViewSubmission.AccessibleDescription = ""
         Me.btnViewSubmission.AccessibleName = "btnViewSubmissionsForm"
-        Me.btnViewSubmission.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnViewSubmission.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.btnViewSubmission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnViewSubmission.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnViewSubmission.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnViewSubmission.Location = New System.Drawing.Point(139, 184)
         Me.btnViewSubmission.Name = "btnViewSubmission"
-        Me.btnViewSubmission.Size = New System.Drawing.Size(535, 51)
+        Me.btnViewSubmission.Size = New System.Drawing.Size(535, 50)
         Me.btnViewSubmission.TabIndex = 0
-        Me.btnViewSubmission.Text = "View Submissions"
+        Me.btnViewSubmission.Text = "VIEW SUBMISSIONS ( CTRL + V )"
         Me.btnViewSubmission.UseVisualStyleBackColor = False
         '
         'btnCreateNewSubmission
         '
         Me.btnCreateNewSubmission.AccessibleName = "btnCreateSubmissionForm"
+        Me.btnCreateNewSubmission.BackColor = System.Drawing.Color.FromArgb(CType(CType(165, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btnCreateNewSubmission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCreateNewSubmission.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCreateNewSubmission.Location = New System.Drawing.Point(139, 257)
         Me.btnCreateNewSubmission.Name = "btnCreateNewSubmission"
-        Me.btnCreateNewSubmission.Size = New System.Drawing.Size(535, 51)
+        Me.btnCreateNewSubmission.Size = New System.Drawing.Size(535, 50)
         Me.btnCreateNewSubmission.TabIndex = 1
-        Me.btnCreateNewSubmission.Text = "Create New Submission"
-        Me.btnCreateNewSubmission.UseVisualStyleBackColor = True
+        Me.btnCreateNewSubmission.Text = "CREATE NEW SUBMISSION ( CTRL + N )"
+        Me.btnCreateNewSubmission.UseVisualStyleBackColor = False
         '
         'lblProjectName
         '
-        Me.lblProjectName.Location = New System.Drawing.Point(136, 103)
+        Me.lblProjectName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProjectName.Location = New System.Drawing.Point(136, 102)
         Me.lblProjectName.Name = "lblProjectName"
         Me.lblProjectName.Size = New System.Drawing.Size(538, 61)
         Me.lblProjectName.TabIndex = 2
-        Me.lblProjectName.Text = "Slidely Forms"
+        Me.lblProjectName.Text = "SM Saif, Slidely Task- 2 -  Slidely Forms App"
         Me.lblProjectName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Form1
@@ -70,6 +74,8 @@ Partial Class Form1
         Me.Controls.Add(Me.lblProjectName)
         Me.Controls.Add(Me.btnCreateNewSubmission)
         Me.Controls.Add(Me.btnViewSubmission)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)

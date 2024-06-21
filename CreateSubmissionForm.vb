@@ -2,6 +2,7 @@
 Imports System.Text
 Imports Newtonsoft.Json
 Imports System.IO
+
 Public Class CreateSubmissionForm
     Private stopwatch As New Stopwatch()
 
@@ -11,6 +12,10 @@ Public Class CreateSubmissionForm
 
         ' Add any initialization after the InitializeComponent() call.
         Me.KeyPreview = True ' To capture key presses
+
+        ' Initialize the timer
+        timerUpdate.Interval = 1000 ' Set the timer to tick every second
+        AddHandler timerUpdate.Tick, AddressOf TimerUpdate_Tick
     End Sub
 
     Private Sub btnStartPause_Click(sender As Object, e As EventArgs) Handles btnStartPause.Click
@@ -58,13 +63,18 @@ Public Class CreateSubmissionForm
         If stopwatch.IsRunning Then
             stopwatch.Stop()
             btnStartPause.Text = "Resume"
+            timerUpdate.Stop()
         Else
             stopwatch.Start()
             btnStartPause.Text = "Pause"
+            timerUpdate.Start()
         End If
         lblStopwatch.Text = stopwatch.Elapsed.ToString("hh\:mm\:ss")
     End Sub
 
+    Private Sub TimerUpdate_Tick(sender As Object, e As EventArgs)
+        lblStopwatch.Text = stopwatch.Elapsed.ToString("hh\:mm\:ss")
+    End Sub
 
     Private Sub CreateSubmissionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Set default text for buttons

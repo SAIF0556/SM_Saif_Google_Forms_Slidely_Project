@@ -1,4 +1,5 @@
 ﻿Imports System.Net.Http
+Imports System.Text
 Imports Newtonsoft.Json
 
 
@@ -85,6 +86,38 @@ Public Class ViewSubmissionsForm
         End If
     End Sub
 
+
+    Private Async Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        Dim updatedSubmission As New Submission(txtName.Text, txtEmail.Text, txtPhone.Text, txtGitHub.Text, txtStopwatch.Text)
+        Dim httpClient As New HttpClient()
+        Dim json As String = JsonConvert.SerializeObject(New With {
+            Key .index = currentIndex,
+            Key .submission = updatedSubmission
+        })
+        Dim content As New StringContent(json, Encoding.UTF8, "application/json")
+        Dim response = Await httpClient.PutAsync("http://localhost:3000/update", content)
+
+        If response.IsSuccessStatusCode Then
+            MessageBox.Show("Submission updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            DisplaySubmission()
+        Else
+            MessageBox.Show($"Failed to update submission. Status code: {response.StatusCode}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Async Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim httpClient As New HttpClient()
+        Dim response = Await httpClient.DeleteAsync($"http://localhost:3000/delete?index={currentIndex}")
+
+        If response.IsSuccessStatusCode Then
+            MessageBox.Show("Submission deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            InitializeSubmissions() ' Refresh the submissions list
+        Else
+            MessageBox.Show($"Failed to delete submission. Status code: {response.StatusCode}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+
     Private Sub ViewSubmissionsForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.Control Then
             Select Case e.KeyCode
@@ -92,6 +125,10 @@ Public Class ViewSubmissionsForm
                     btnPrevious.PerformClick()
                 Case Keys.N
                     btnNext.PerformClick()
+                Case Keys.D
+                    btnDelete.PerformClick()
+                Case Keys.E
+                    btnEdit.PerformClick()
             End Select
         End If
     End Sub
